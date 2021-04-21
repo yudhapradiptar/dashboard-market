@@ -1,0 +1,62 @@
+@import "../../../components/config.scss";
+
+.avg-value {
+  display: flex;
+  flex-direction: column;
+  margin: 30px 20px 0 20px;
+
+  .avg-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    p {
+      font-size: 20px;
+      line-height: 13px;
+      letter-spacing: 0px;
+      color: #4d4f5c;
+    }
+
+    .avg-row-right {
+      display: flex;
+
+      .avg-period-box {
+        background: #ffffff 0% 0% no-repeat padding-box;
+        box-shadow: 0px 2px 3px #0000000d;
+        border: 1px solid #d7dae2;
+        border-radius: 2px;
+
+        margin: 0 3px 0 3px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .avg-period-text {
+          padding: 4px 6px;
+          font-size: 12px;
+          line-height: 20px;
+          color: #4d4f5c;
+        }
+
+        .avg-period-down {
+          padding: 8px 6px 4px 6px;
+          font-size: 20px;
+          color: #707070;
+        }
+      }
+
+      .icon-more {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        margin-left: 30px;
+        margin-top: 8px;
+      }
+    }
+  }
+
+  .graph {
+    margin: 30px 20px 0 20px;
+  }
+}

@@ -4,6 +4,8 @@ import FilterPeriod from "./components/FilterPeriod/FilterPeriod";
 import help from "../assets/images/Help.png";
 import { IoIosArrowUp } from "react-icons/io";
 import SalesTurnover from "./components/SalesTurnover/SalesTurnover";
+import AverageValue from "./components/AverageValue/AverageValue";
+import BestItems from "./components/BestItems/BestItems";
 
 const Dashboard = () => {
   return (
@@ -26,6 +28,17 @@ const Dashboard = () => {
       </div>
       <div className="sales-turnover-box">
         <SalesTurnover />
+      </div>
+      <div className="dashboard-main">
+        <div className="avg-value-box">
+          <AverageValue />
+        </div>
+        <div className="best-items-box">
+          <BestItems title="BEST SELLING SKU" />
+        </div>
+        <div className="best-items-box">
+          <BestItems title="TOP COMPETITOR SKU" />
+        </div>
       </div>
     </div>
   );
