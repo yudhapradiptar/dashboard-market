@@ -9,7 +9,7 @@
   .title-row {
     display: flex;
     justify-content: space-between;
-    margin: 30px 24px 0 24px;
+    margin: 50px 24px 0 24px;
     height: 50px;
 
     h1 {
@@ -78,5 +78,16 @@
         cursor: pointer;
       }
     }
+  }
+
+  .sales-turnover-box {
+    margin: 30px 0 0 24px;
+
+    width: 320px;
+    height: auto;
+
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 2px 3px #00000029;
+    border-radius: 2px;
   }
 }
