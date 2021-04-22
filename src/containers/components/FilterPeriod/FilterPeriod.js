@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import "./FilterPeriod.scss";
 import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
+import { DateRangeContext } from "../../../context/DateRangeContext";
 
 function FilterPeriod() {
+  const { dispatch, dateRange } = useContext(DateRangeContext);
 
-  const startValue = new Date(new Date().setDate(new Date().getDate() - 7));
-  const endValue = new Date(new Date().setDate(new Date().getDate() - 1));
+  console.log(dateRange)
 
-  const maxDate = new Date(new Date().setDate(new Date().getDate()-1));
+  const maxDate = new Date(new Date().setDate(new Date().getDate() - 1));
 
   const presets = [
     {
@@ -33,10 +34,11 @@ function FilterPeriod() {
         placeholder="Select a range"
         presets={presets}
         format="dd MMMMMMMMM yyyy"
-        startDate={startValue}
-        endDate={endValue}
         maxDays={180}
         max={maxDate}
+        value={dateRange}
+        onChange={(e) => dispatch({ type: "SET_DATE", dateRange: e.value })}
+        allowEdit={false}
       />
     </div>
   );

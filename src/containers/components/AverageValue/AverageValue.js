@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./AverageValue.scss";
 import iconMore from "../../../assets/images/Icon - More.svg";
 import { IoIosArrowDown } from "react-icons/io";
@@ -11,53 +11,37 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
+import { DateRangeContext } from "../../../context/DateRangeContext";
 
 const AverageValue = () => {
-  const data = [
-    {
-      name: "Jan",
-      net: 19000,
-      apv: 3000,
-      total: 22000,
-    },
-    {
-      name: "Feb",
-      net: 13000,
-      apv: 1000,
-      total: 14000,
-    },
-    {
-      name: "Mar",
-      net: 14000,
-      apv: 2500,
-      total: 16500,
-    },
-    {
-      name: "Apr",
-      net: 16000,
-      apv: 1700,
-      total: 17700,
-    },
-    {
-      name: "May",
-      net: 16300,
-      apv: 2300,
-      total: 18600,
-    },
-    {
-      name: "Jun",
-      net: 15000,
-      apv: 2400,
-      total: 17400,
-    },
-    {
-      name: "Jul",
-      net: 16300,
-      apv: 2100,
-      total: 18400,
-    },
-  ];
+  const { dateRange } = useContext(DateRangeContext);
+
+  const getRandomValue = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
+
+  useEffect(() => {
+    let dataTemp = [];
+
+    for (let d = dateRange[0]; d <= dateRange[1]; d.setDate(d.getDate() + 1)) {
+      const net = getRandomValue(10000, 25000);
+      const apv = getRandomValue(1500, 5000);
+      const total = net + apv;
+
+      dataTemp.push({
+        name: `${d.getDate()}/${d.getMonth()}/${d.getYear()}`,
+        net: net,
+        apv: apv,
+        total: total
+      })
+    }
+
+    setData(dataTemp);
+  }, [dateRange]);
+
+  const [data, setData] = useState([]);
 
   return (
     <div className="avg-value">
@@ -74,6 +58,7 @@ const AverageValue = () => {
         </div>
       </div>
       <div className="graph">
+        <ResponsiveContainer width={"99%"} height={400}>
           <ComposedChart
             width={650}
             height={400}
@@ -90,10 +75,17 @@ const AverageValue = () => {
             <YAxis />
             <Tooltip />
             <Legend />
-            <Line type="total" dataKey="total" stroke="#FFE854" activeDot={{ r: 8 }} strokeWidth={3}/>
+            <Line
+              type="total"
+              dataKey="total"
+              stroke="#FFE854"
+              activeDot={{ r: 8 }}
+              strokeWidth={3}
+            />
             <Bar dataKey="net" stackId="a" barSize={20} fill="#37B04C" />
             <Bar dataKey="apv" stackId="a" barSize={20} fill="#289E45" />
           </ComposedChart>
+        </ResponsiveContainer>
       </div>
     </div>
   );
