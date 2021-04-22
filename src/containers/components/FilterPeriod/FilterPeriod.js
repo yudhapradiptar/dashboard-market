@@ -1,17 +1,43 @@
-import React from "react";
-import calendarIcon from "../../../assets/images/calendar.png";
+import React, { useState } from "react";
 import "./FilterPeriod.scss";
-import { IoIosArrowDown } from "react-icons/io";
+import { DateRangePickerComponent } from "@syncfusion/ej2-react-calendars";
 
 function FilterPeriod() {
+
+  const startValue = new Date(new Date().setDate(new Date().getDate() - 7));
+  const endValue = new Date(new Date().setDate(new Date().getDate() - 1));
+
+  const maxDate = new Date(new Date().setDate(new Date().getDate()-1));
+
+  const presets = [
+    {
+      label: "Yesterday",
+      start: new Date(new Date().setDate(new Date().getDate() - 1)),
+      end: new Date(new Date().setDate(new Date().getDate() - 1)),
+    },
+    {
+      label: "Last 7 Days",
+      start: new Date(new Date().setDate(new Date().getDate() - 7)),
+      end: new Date(new Date().setDate(new Date().getDate() - 1)),
+    },
+    {
+      label: "Last 30 Days",
+      start: new Date(new Date().setDate(new Date().getDate() - 30)),
+      end: new Date(new Date().setDate(new Date().getDate() - 1)),
+    },
+  ];
+
   return (
     <div className="filter-period">
-      <img src={calendarIcon} alt="calendar" className="calendar" />
-      <div className="period-text">Period</div>
-      <div className="period-range">11 September 2018 - 14 September 2018</div>
-      <div className="down-arrow">
-        <IoIosArrowDown />
-      </div>
+      <DateRangePickerComponent
+        placeholder="Select a range"
+        presets={presets}
+        format="dd MMMMMMMMM yyyy"
+        startDate={startValue}
+        endDate={endValue}
+        maxDays={180}
+        max={maxDate}
+      />
     </div>
   );
 }
